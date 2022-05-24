@@ -9,15 +9,8 @@ public class HtmlSerializer
             this.tagHandlers.Add(tagHandler.Tag, tagHandler);
         }
     }
-    
-    
-    
-    // public async Task<List<HtmlObjectBase>> ConvertHtmlToObjects(string htmlString)
-    // {
-    //     
-    // }
-    
-    
+
+
 
     private Dictionary<string, ITagHandler> tagHandlers = new ();
     
@@ -38,6 +31,7 @@ public class HtmlSerializer
             if (tagHandlers.TryGetValue(tag, out ITagHandler tagHandler))
             {
                 var endOfSectionIndex = GetIndexAtEndOfTagSection(htmlString, searchIndex, tagHandler.EndTag);
+                // Console.WriteLine(htmlString.Substring(i, endOfSectionIndex - i));
                 yield return tagHandler.GetObjectFromString(htmlString.Substring(i, endOfSectionIndex - i));
                 i = endOfSectionIndex;
             }
@@ -102,7 +96,7 @@ public class HtmlSerializer
     /// <exception cref="Exception">if the html file doesn't contain the endTag provided</exception>
     private int GetIndexAtEndOfTagSection(string htmlString, int startIndex, string endTag)
     {
-        var result = htmlString.IndexOf(endTag, startIndex, StringComparison.Ordinal);
+        var result = htmlString.IndexOf($"<{endTag}>", startIndex, StringComparison.Ordinal);
         if (result == -1)
             throw new Exception(
                 $"A end tag matching [{endTag}] was not found! Are your html incomplete or is your translator tags miss configured?");

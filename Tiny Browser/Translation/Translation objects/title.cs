@@ -4,10 +4,7 @@ public class title : ITagHandler
 {
     public HtmlObjectBase GetObjectFromString(string objectString)
     {
-        var startIndex = objectString.IndexOf(">", 1, StringComparison.Ordinal) + 1;
-        var endIndex = objectString.IndexOf("<", startIndex, StringComparison.Ordinal);
-        var title = objectString.Substring(startIndex, endIndex - startIndex);
-        return new HtmlTitle(title);
+        return new HtmlTitle(TranslationCollection.GetStringBetween(objectString, ">", "<"));
     }
 
     public string Tag => "title";
