@@ -4,7 +4,7 @@ public class title : ITagHandler
 {
     public HtmlObjectBase GetObjectFromString(string objectString)
     {
-        var startIndex = objectString.IndexOf(">", 1, StringComparison.Ordinal);
+        var startIndex = objectString.IndexOf(">", 1, StringComparison.Ordinal) + 1;
         var endIndex = objectString.IndexOf("<", startIndex, StringComparison.Ordinal);
         var title = objectString.Substring(startIndex, endIndex - startIndex);
         return new HtmlTitle(title);
@@ -23,5 +23,10 @@ public class HtmlTitle : HtmlObjectBase
     public HtmlTitle(string title)
     {
         Title = title;
+    }
+
+    public override string ToString()
+    {
+        return Title;
     }
 }

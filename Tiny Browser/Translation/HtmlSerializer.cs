@@ -12,10 +12,10 @@ public class HtmlSerializer
     
     
     
-    public static async Task<List<HtmlObjectBase>> ConvertHtmlToObjects(string htmlString)
-    {
-        throw new NotImplementedException();
-    }
+    // public async Task<List<HtmlObjectBase>> ConvertHtmlToObjects(string htmlString)
+    // {
+    //     
+    // }
     
     
 
@@ -23,7 +23,7 @@ public class HtmlSerializer
     
     
 
-    private IEnumerable<HtmlObjectBase> ExtractHtmlObjects(string htmlString)
+    public IEnumerable<HtmlObjectBase> ExtractHtmlObjects(string htmlString)
     {
         for (int i = 0; i < htmlString.Length; i++)
         {
@@ -32,6 +32,7 @@ public class HtmlSerializer
             // Check tag type
             var searchIndex = i + 1;
             var tag = GetTag(htmlString, searchIndex, out int endIndex);
+            // Console.WriteLine(tag);
             searchIndex = endIndex;
 
             if (tagHandlers.TryGetValue(tag, out ITagHandler tagHandler))
@@ -45,8 +46,6 @@ public class HtmlSerializer
                 i = GetIndexAtEndOfTagBlock(htmlString, searchIndex);
             }
         }
-
-        yield break;
     }
     
 
@@ -62,14 +61,16 @@ public class HtmlSerializer
     {
         for (int i = startIndex; i < htmlString.Length; i++)
         {
-            if (htmlString[i] is not ' ' or '>')
+            char c = htmlString[i];
+
+            if (c != ' ' && c != '>')
                 continue;
 
             endIndex = i;
             return htmlString.Substring(startIndex, endIndex - startIndex);
         }
 
-        throw new Exception("Unexpected end to tag block! Did the string get cut early?");
+        throw new Exception($"Unexpected end to tag block! Did the string get cut early? StartIndex:{startIndex}");
     }
     
     

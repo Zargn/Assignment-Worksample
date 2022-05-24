@@ -2,8 +2,10 @@
 
 public class TranslationCollection
 {
+    public List<ITagHandler> TagHandlers = new();
+    
     public TranslationCollection()
     {
-        
+        TagHandlers.Add(new title());
     }
 }
