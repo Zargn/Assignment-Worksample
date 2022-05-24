@@ -12,7 +12,7 @@ public class HtmlSerializer
     
     
     
-    public static async Task<List<HtmlObject>> ConvertHtmlToObjects(string htmlString)
+    public static async Task<List<HtmlObjectBase>> ConvertHtmlToObjects(string htmlString)
     {
         throw new NotImplementedException();
     }
@@ -23,7 +23,7 @@ public class HtmlSerializer
     
     
 
-    private IEnumerable<HtmlObject> ExtractHtmlObjects(string htmlString)
+    private IEnumerable<HtmlObjectBase> ExtractHtmlObjects(string htmlString)
     {
         for (int i = 0; i < htmlString.Length; i++)
         {
@@ -109,14 +109,4 @@ public class HtmlSerializer
         // Indexof returns the start of the word, so we add the words length to get the position at the end.
         return result + endTag.Length;
     }
-}
-
-
-
-
-public interface ITagHandler
-{
-    public HtmlObject GetObjectFromString(string objectString);
-    public string Tag { get; }
-    public string EndTag { get; }
 }

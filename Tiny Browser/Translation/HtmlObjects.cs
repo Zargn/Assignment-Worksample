@@ -1,26 +1,16 @@
 ﻿namespace Tiny_Browser.Translation;
 
-public class HtmlObject
+public class HtmlObjectBase
 {
-    public HtmlObjectType Type;
+    public readonly string Type;
 
-    public HtmlObject(HtmlObjectType type)
+    public HtmlObjectBase()
     {
-        Type = type;
-    }
-}
-
-public class HtmlObject<T> : HtmlObject
-{ 
-    public T Value;
-
-    public HtmlObject(HtmlObjectType type, T value) : base(type)
-    {
-        Value = value;
+        Type = GetType().FullName;
     }
 }
 
 public enum HtmlObjectType
 {
-    Title
+    Title,
 }
