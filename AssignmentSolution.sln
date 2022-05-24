@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TinyBrowser", "TinyBrowser", "{558E93E8-A7E2-4D90-B2F6-0A31D9BB29E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiny Browser", "Tiny Browser\Tiny Browser.csproj", "{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371} = {558E93E8-A7E2-4D90-B2F6-0A31D9BB29E3}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
