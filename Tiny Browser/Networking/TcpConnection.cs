@@ -25,7 +25,6 @@ public class TcpConnection
 
     public async Task<string?> WaitForResponse()
     {
-        var response = await streamReader.ReadLineAsync();
-        return response;
+        return await streamReader.ReadToEndAsync();
     }
 }

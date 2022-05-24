@@ -19,7 +19,8 @@ public class TinyBrowser
         var hostname = AskUserForStringInput("Please enter hostname");
         var port = AskUserForIntegerInput("Please enter port number");
         // var request = AskUserForStringInput("Please enter http request");
-        tinyHttpClient.SendHttpRequest(hostname, port, DefaultRequest);
+        var result = tinyHttpClient.SendHttpRequest(hostname, port, DefaultRequest);
+        Console.WriteLine(result);
     }
 
     
