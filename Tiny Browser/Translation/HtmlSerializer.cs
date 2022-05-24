@@ -2,10 +2,13 @@
 
 public class HtmlSerializer
 {
-    // public HtmlSerializer(list)
-    // {
-    //     
-    // }
+    public HtmlSerializer(List<ITagHandler> tagHandlers)
+    {
+        foreach (var tagHandler in tagHandlers)
+        {
+            this.tagHandlers.Add(tagHandler.Tag, tagHandler);
+        }
+    }
     
     
     
@@ -16,7 +19,7 @@ public class HtmlSerializer
     
     
 
-    private Dictionary<string, Action> tagAction = new ();
+    private Dictionary<string, ITagHandler> tagHandlers = new ();
     
     
 
@@ -24,34 +27,26 @@ public class HtmlSerializer
     {
         for (int i = 0; i < htmlString.Length; i++)
         {
-            if (htmlString[i] == '<')
+            if (htmlString[i] != '<') continue;
+            
+            // Check tag type
+            var searchIndex = i + 1;
+            var tag = GetTag(htmlString, searchIndex, out int endIndex);
+            searchIndex = endIndex;
+
+            if (tagHandlers.TryGetValue(tag, out ITagHandler tagHandler))
             {
-                // Check tag type
-                i++;
-                string tag = GetTag(htmlString, i, out int endIndex);
-                i = endIndex;
-
-                if (tagAction.TryGetValue(tag, out Action action))
-                {
-                    
-                }
-                else
-                {
-                    i = GetIndexAtEndOfTagBlock(htmlString, i);
-                }
-
-
-                // Compare if tag type is know
-
-                // if known do appropriate action
-
-
-                // yield return ReadSection(ref htmlString, i, out int endIndex);
-                // i = endIndex;
+                var endOfSectionIndex = GetIndexAtEndOfTagSection(htmlString, searchIndex, tagHandler.EndTag);
+                yield return tagHandler.GetObjectFromString(htmlString.Substring(i, endOfSectionIndex - i));
+                i = endOfSectionIndex;
+            }
+            else
+            {
+                i = GetIndexAtEndOfTagBlock(htmlString, searchIndex);
             }
         }
 
-        throw new NotImplementedException();
+        yield break;
     }
     
 
@@ -94,4 +89,34 @@ public class HtmlSerializer
 
         return htmlString.Length;
     }
+
+    
+    /// <summary>
+    /// Returns the end index of the selected tag.
+    /// </summary>
+    /// <param name="htmlString"></param>
+    /// <param name="startIndex"></param>
+    /// <param name="endTag"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception">if the html file doesn't contain the endTag provided</exception>
+    private int GetIndexAtEndOfTagSection(string htmlString, int startIndex, string endTag)
+    {
+        var result = htmlString.IndexOf(endTag, startIndex, StringComparison.Ordinal);
+        if (result == -1)
+            throw new Exception(
+                $"A end tag matching [{endTag}] was not found! Are your html incomplete or is your translator tags miss configured?");
+
+        // Indexof returns the start of the word, so we add the words length to get the position at the end.
+        return result + endTag.Length;
+    }
+}
+
+
+
+
+public interface ITagHandler
+{
+    public HtmlObject GetObjectFromString(string objectString);
+    public string Tag { get; }
+    public string EndTag { get; }
 }

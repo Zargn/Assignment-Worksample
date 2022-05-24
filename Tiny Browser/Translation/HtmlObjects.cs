@@ -2,12 +2,20 @@
 
 public class HtmlObject
 {
-    public HtmlObjectType HtmlObjectType;
-    public string Value;
+    public HtmlObjectType Type;
 
-    public HtmlObject(HtmlObjectType htmlObjectType, string value)
+    public HtmlObject(HtmlObjectType type)
     {
-        HtmlObjectType = htmlObjectType;
+        Type = type;
+    }
+}
+
+public class HtmlObject<T> : HtmlObject
+{ 
+    public T Value;
+
+    public HtmlObject(HtmlObjectType type, T value) : base(type)
+    {
         Value = value;
     }
 }
