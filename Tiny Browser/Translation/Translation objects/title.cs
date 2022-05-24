@@ -4,11 +4,14 @@ public class title : ITagHandler
 {
     public HtmlObjectBase GetObjectFromString(string objectString)
     {
-        throw new NotImplementedException();
+        var startIndex = objectString.IndexOf(">", 1, StringComparison.Ordinal);
+        var endIndex = objectString.IndexOf("<", startIndex, StringComparison.Ordinal);
+        var title = objectString.Substring(startIndex, endIndex - startIndex);
+        return new HtmlTitle(title);
     }
 
-    public string Tag { get; }
-    public string EndTag { get; }
+    public string Tag => "title";
+    public string EndTag => "/" + Tag;
 }
 
 
