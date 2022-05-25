@@ -12,22 +12,18 @@ public class Program { public static void Main() { new TinyBrowser().Run(); } }
 
 public class TinyBrowser
 {
-    private const string DefaultRequest = "GET / HTTP/1.1\r\nHost: www.acme.com\r\n\r\n"; //"{command} {uri} {protocol-version}\r\n{header-key}: {header-value}\r\n{header-key}: {header-value}\r\n\r\n"
+    
     
     public void Run()
     {
         TranslationCollection translationCollection = new();
         HtmlSerializer htmlSerializer = new(translationCollection.TagHandlers);
-
-        
-        
-        
-        Console.WriteLine("Hello world!");
         TinyHttpClient tinyHttpClient = new();
+        
         var hostname = AskUserForStringInput("Please enter hostname");
         var port = AskUserForIntegerInput("Please enter port number");
-        // var request = AskUserForStringInput("Please enter http request");
-        var result = tinyHttpClient.SendHttpRequest(hostname, port, DefaultRequest);
+
+        var result = tinyHttpClient.SendHttpRequest(hostname, port);
         Console.WriteLine(result);
 
         foreach (var htmlObjectBase in htmlSerializer.ExtractHtmlObjects(result))
@@ -36,9 +32,6 @@ public class TinyBrowser
                 .CurrentDomain.GetAssemblies()
                 .Select(assembly => assembly.GetType(htmlObjectBase.Type))
                 .SingleOrDefault(type => type != null);
-
-            // Console.WriteLine("Hi found object");
-            // Console.WriteLine(type);
 
             var htmlObject = Convert.ChangeType(htmlObjectBase, type);
             Console.WriteLine(htmlObject);

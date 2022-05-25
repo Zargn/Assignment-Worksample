@@ -5,7 +5,8 @@ public class a : ITagHandler
     public HtmlObjectBase GetObjectFromString(string objectString)
     {
         var url = TranslationCollection.GetStringBetween(objectString, "href=\"", "\"");
-        var description = TranslationCollection.GetStringBetween(objectString, ">", "<");
+
+        var description = TranslationCollection.GetStringBetween(objectString, ">", "</a>");
         return new HtmlHyperlink(url, description);
     }
 
@@ -26,6 +27,6 @@ public class HtmlHyperlink : HtmlObjectBase
 
     public override string ToString()
     {
-        return $"{Url} \"{Description}\"";
+        return $"[HyperLink]: {Url} [Description]: \"{Description}\"";
     }
 }

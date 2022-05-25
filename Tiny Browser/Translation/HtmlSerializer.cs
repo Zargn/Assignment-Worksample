@@ -102,6 +102,6 @@ public class HtmlSerializer
                 $"A end tag matching [{endTag}] was not found! Are your html incomplete or is your translator tags miss configured?");
 
         // Indexof returns the start of the word, so we add the words length to get the position at the end.
-        return result + endTag.Length;
+        return result + endTag.Length + 2;
     }
 }

@@ -24,6 +24,6 @@ public class HtmlTitle : HtmlObjectBase
 
     public override string ToString()
     {
-        return Title;
+        return $"[Title]: {Title}";
     }
 }
