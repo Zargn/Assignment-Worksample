@@ -16,7 +16,7 @@ public class TinyBrowser
     public void Run()
     {
         TranslationCollection translationCollection = new();
-        HtmlSerializer htmlSerializer = new(translationCollection.TagHandlers);
+        HtmlReader htmlReader = new(translationCollection.TagHandlers);
         TinyHttpClient tinyHttpClient = new();
         
         var hostname = AskUserForStringInput("Please enter hostname");
@@ -27,7 +27,7 @@ public class TinyBrowser
 
         var outputString = new StringBuilder();
         
-        foreach (var htmlObjectBase in htmlSerializer.ExtractHtmlObjects(result))
+        foreach (var htmlObjectBase in htmlReader.ExtractHtmlObjects(result))
         {
             var type = AppDomain
                 .CurrentDomain.GetAssemblies()

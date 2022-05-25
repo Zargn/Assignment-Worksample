@@ -1,12 +1,12 @@
 ﻿namespace TinyHtmlReader;
 
-public class HtmlSerializer
+public class HtmlReader
 {
     /// <summary>
     /// Creates the serializer.
     /// </summary>
     /// <param name="tagHandlers">List of user supported tags.</param>
-    public HtmlSerializer(List<ITagHandler> tagHandlers)
+    public HtmlReader(List<ITagHandler> tagHandlers)
     {
         foreach (var tagHandler in tagHandlers)
         {
