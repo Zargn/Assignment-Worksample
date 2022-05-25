@@ -16,7 +16,7 @@ public class a : ITagHandler
     public string EndTag => "/" + Tag;
 }
 
-public class HtmlHyperlink : HtmlObjectBase
+public class HtmlHyperlink : TinyBrowserHtmlObject
 {
     public readonly string Url;
     public readonly string Description;
@@ -33,6 +33,11 @@ public class HtmlHyperlink : HtmlObjectBase
     }
 
     public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnDraw()
     {
         throw new NotImplementedException();
     }

@@ -13,7 +13,7 @@ public class comment : ITagHandler
     public string EndTag => "--";
 }
 
-public class HtmlComment : HtmlObjectBase
+public class HtmlComment : TinyBrowserHtmlObject
 {
     public string CommentedString;
 
@@ -28,6 +28,11 @@ public class HtmlComment : HtmlObjectBase
     }
 
     public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnDraw()
     {
         throw new NotImplementedException();
     }

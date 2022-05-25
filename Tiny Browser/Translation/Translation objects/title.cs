@@ -15,7 +15,7 @@ public class title : ITagHandler
 
 
 
-public class HtmlTitle : HtmlObjectBase
+public class HtmlTitle : TinyBrowserHtmlObject
 {
     public readonly string Title;
 
@@ -30,6 +30,11 @@ public class HtmlTitle : HtmlObjectBase
     }
 
     public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnDraw()
     {
         throw new NotImplementedException();
     }

@@ -26,10 +26,12 @@ public class TinyBrowser
         var result = tinyHttpClient.SendHttpRequest(hostname, port);
         Console.WriteLine(result);
 
-        var outputString = new StringBuilder();
+        List<TinyBrowserHtmlObject> htmlObjects = new();
 
         foreach (var htmlObjectBase in htmlReader.ExtractHtmlObjects(result))
         {
+            htmlObjects.Add(htmlObjectBase as TinyBrowserHtmlObject);
+            
             // var type = AppDomain
             //     .CurrentDomain.GetAssemblies()
             //     .Select(assembly => assembly.GetType(htmlObjectBase.Type))
@@ -39,10 +41,7 @@ public class TinyBrowser
             // outputString.Append($"\n{htmlObject}");
         }
 
-        Console.WriteLine(outputString);
-
-        var uiPrinter = new UiPrinter();
-        uiPrinter.PrintWebpage(new List<HtmlObjectBase>(htmlReader.ExtractHtmlObjects(result)));
+        var loadedPage = new LoadedWebpage(htmlObjects);
     }
 
     

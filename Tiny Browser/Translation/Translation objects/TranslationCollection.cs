@@ -21,3 +21,16 @@ public class TranslationCollection
         return title;
     }
 }
+
+public abstract class TinyBrowserHtmlObject : HtmlObjectBase
+{
+    /// <summary>
+    /// Called when the user clicks this html object.
+    /// </summary>
+    public abstract void OnClick();
+    
+    /// <summary>
+    /// Called once when the page is loaded.
+    /// </summary>
+    public abstract void OnDraw();
+}

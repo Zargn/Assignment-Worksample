@@ -8,6 +8,4 @@ public abstract class HtmlObjectBase
     {
         Type = GetType().FullName;
     }
-
-    public abstract void OnClick();
 }
