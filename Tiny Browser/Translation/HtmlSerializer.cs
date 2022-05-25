@@ -20,19 +20,21 @@ public class HtmlSerializer
     {
         for (int i = 0; i < htmlString.Length; i++)
         {
+            // If the current character is not the start of a tag block.
             if (htmlString[i] != '<') continue;
             
             // Check tag type
             var searchIndex = i + 1;
             var tag = GetTag(htmlString, searchIndex, out int endIndex);
-            // Console.WriteLine(tag);
+
             searchIndex = endIndex;
 
             if (tagHandlers.TryGetValue(tag, out ITagHandler tagHandler))
             {
                 var endOfSectionIndex = GetIndexAtEndOfTagSection(htmlString, searchIndex, tagHandler.EndTag);
-                // Console.WriteLine(htmlString.Substring(i, endOfSectionIndex - i));
+
                 yield return tagHandler.GetObjectFromString(htmlString.Substring(i, endOfSectionIndex - i));
+                
                 i = endOfSectionIndex;
             }
             else
@@ -57,7 +59,7 @@ public class HtmlSerializer
         {
             char c = htmlString[i];
 
-            if (c != ' ' && c != '>')
+            if (c != ' ' && c != '>' && c != '\n')
                 continue;
 
             endIndex = i;
