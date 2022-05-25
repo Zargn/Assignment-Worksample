@@ -12,8 +12,4 @@
       <ProjectReference Include="..\TinyHtmlReader\TinyHtmlReader.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Ui" />
-    </ItemGroup>
-
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Tiny_Browser.Networking;
 using Tiny_Browser.Translation.Translation_objects;
+using Tiny_Browser.Ui;
 using TinyHtmlReader;
 
 namespace Tiny_Browser;
@@ -26,19 +27,22 @@ public class TinyBrowser
         Console.WriteLine(result);
 
         var outputString = new StringBuilder();
-        
+
         foreach (var htmlObjectBase in htmlReader.ExtractHtmlObjects(result))
         {
-            var type = AppDomain
-                .CurrentDomain.GetAssemblies()
-                .Select(assembly => assembly.GetType(htmlObjectBase.Type))
-                .SingleOrDefault(type => type != null);
-
-            var htmlObject = Convert.ChangeType(htmlObjectBase, type);
-            outputString.Append($"\n{htmlObject}");
+            // var type = AppDomain
+            //     .CurrentDomain.GetAssemblies()
+            //     .Select(assembly => assembly.GetType(htmlObjectBase.Type))
+            //     .SingleOrDefault(type => type != null);
+            //
+            // var htmlObject = Convert.ChangeType(htmlObjectBase, type);
+            // outputString.Append($"\n{htmlObject}");
         }
 
         Console.WriteLine(outputString);
+
+        var uiPrinter = new UiPrinter();
+        uiPrinter.PrintWebpage(new List<HtmlObjectBase>(htmlReader.ExtractHtmlObjects(result)));
     }
 
     
