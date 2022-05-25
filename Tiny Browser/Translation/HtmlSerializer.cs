@@ -96,12 +96,12 @@ public class HtmlSerializer
     /// <exception cref="Exception">if the html file doesn't contain the endTag provided</exception>
     private int GetIndexAtEndOfTagSection(string htmlString, int startIndex, string endTag)
     {
-        var result = htmlString.IndexOf($"<{endTag}>", startIndex, StringComparison.Ordinal);
+        var result = htmlString.IndexOf($"{endTag}>", startIndex, StringComparison.Ordinal);
         if (result == -1)
             throw new Exception(
                 $"A end tag matching [{endTag}] was not found! Are your html incomplete or is your translator tags miss configured?");
 
         // Indexof returns the start of the word, so we add the words length to get the position at the end.
-        return result + endTag.Length + 2;
+        return result + endTag.Length + 1;
     }
 }
