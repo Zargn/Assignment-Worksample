@@ -31,4 +31,9 @@ public class HtmlHyperlink : HtmlObjectBase
     {
         return $"[HyperLink]: {Url} [Description]: \"{Description}\"";
     }
+
+    public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TinyHtmlReader;
 
-public class HtmlObjectBase
+public abstract class HtmlObjectBase
 {
     public readonly string Type;
 
@@ -8,4 +8,6 @@ public class HtmlObjectBase
     {
         Type = GetType().FullName;
     }
+
+    public abstract void OnClick();
 }

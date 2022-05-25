@@ -28,4 +28,9 @@ public class HtmlTitle : HtmlObjectBase
     {
         return $"[Title]: {Title}";
     }
+
+    public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
 }

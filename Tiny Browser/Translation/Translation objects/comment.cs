@@ -26,4 +26,9 @@ public class HtmlComment : HtmlObjectBase
     {
         return "Hidden code.";
     }
+
+    public override void OnClick()
+    {
+        throw new NotImplementedException();
+    }
 }
