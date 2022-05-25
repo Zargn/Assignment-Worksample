@@ -1,4 +1,4 @@
-﻿namespace Tiny_Browser.Translation;
+﻿namespace TinyHtmlReader;
 
 public interface ITagHandler
 {

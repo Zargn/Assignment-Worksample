@@ -1,0 +1,12 @@
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\bin\Release\net6.0\TinyHtmlSerializer.deps.json
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\bin\Release\net6.0\TinyHtmlSerializer.dll
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\bin\Release\net6.0\TinyHtmlSerializer.pdb
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.csproj.AssemblyReference.cache
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.AssemblyInfoInputs.cache
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.AssemblyInfo.cs
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.csproj.CoreCompileInputs.cache
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.dll
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\refint\TinyHtmlSerializer.dll
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\TinyHtmlSerializer.pdb
+C:\Code\C++\gp21-22-0524-restgameserver-oskar\TinyHtmlSerializer\obj\Release\net6.0\ref\TinyHtmlSerializer.dll

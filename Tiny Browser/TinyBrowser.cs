@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Tiny_Browser.Networking;
-using Tiny_Browser.Translation;
 using Tiny_Browser.Translation.Translation_objects;
+using TinyHtmlReader;
 
 namespace Tiny_Browser;
 

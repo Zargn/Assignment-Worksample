@@ -1,7 +1,11 @@
-﻿namespace Tiny_Browser.Translation;
+﻿namespace TinyHtmlReader;
 
 public class HtmlSerializer
 {
+    /// <summary>
+    /// Creates the serializer.
+    /// </summary>
+    /// <param name="tagHandlers">List of user supported tags.</param>
     public HtmlSerializer(List<ITagHandler> tagHandlers)
     {
         foreach (var tagHandler in tagHandlers)

@@ -1,4 +1,4 @@
-﻿namespace Tiny_Browser.Translation;
+﻿namespace TinyHtmlReader;
 
 public class HtmlObjectBase
 {
@@ -8,9 +8,4 @@ public class HtmlObjectBase
     {
         Type = GetType().FullName;
     }
-}
-
-public enum HtmlObjectType
-{
-    Title,
 }
