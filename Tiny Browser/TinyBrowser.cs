@@ -1,5 +1,4 @@
-﻿
-
+﻿using System.Text;
 using Tiny_Browser.Networking;
 using Tiny_Browser.Translation;
 using Tiny_Browser.Translation.Translation_objects;
@@ -26,6 +25,8 @@ public class TinyBrowser
         var result = tinyHttpClient.SendHttpRequest(hostname, port);
         Console.WriteLine(result);
 
+        var outputString = new StringBuilder();
+        
         foreach (var htmlObjectBase in htmlSerializer.ExtractHtmlObjects(result))
         {
             var type = AppDomain
@@ -34,8 +35,10 @@ public class TinyBrowser
                 .SingleOrDefault(type => type != null);
 
             var htmlObject = Convert.ChangeType(htmlObjectBase, type);
-            Console.WriteLine(htmlObject);
+            outputString.Append($"\n{htmlObject}");
         }
+
+        Console.WriteLine(outputString);
     }
 
     
