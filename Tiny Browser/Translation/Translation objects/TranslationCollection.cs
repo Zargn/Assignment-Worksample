@@ -8,6 +8,7 @@ public class TranslationCollection
     {
         TagHandlers.Add(new title());
         TagHandlers.Add(new a());
+        TagHandlers.Add(new comment());
     }
 
     public static string GetStringBetween(string baseString, string firstString, string secondString)
