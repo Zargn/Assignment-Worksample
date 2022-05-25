@@ -6,7 +6,7 @@ namespace Tiny_Browser.Ui;
 
 public class LoadedWebpage
 {
-    public List<HtmlHyperlink> Links;
+    public List<HtmlHyperlink> Links = new();
     public string Title;
 
     public LoadedWebpage(List<TinyBrowserHtmlObject> htmlElements)
@@ -17,12 +17,17 @@ public class LoadedWebpage
         
         foreach (var htmlElement in htmlElements)
         {
+            htmlElement.OnDraw();
             // Console.WriteLine(htmlElement);
-            
             if (htmlElement is HtmlHyperlink)
-                outputString.Append($"\n[{linkId++}]{htmlElement}");
-            else
-                outputString.Append($"\n{htmlElement}");
+            {
+                Links.Add(htmlElement as HtmlHyperlink);
+            }
+            
+            // if (htmlElement is HtmlHyperlink)
+            //     outputString.Append($"\n[{linkId++}]{htmlElement}");
+            // else
+            //     outputString.Append($"\n{htmlElement}");
         }
         
         Console.WriteLine(outputString);

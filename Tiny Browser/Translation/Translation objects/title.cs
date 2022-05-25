@@ -36,6 +36,6 @@ public class HtmlTitle : TinyBrowserHtmlObject
 
     public override void OnDraw()
     {
-        throw new NotImplementedException();
+        Console.WriteLine(this);
     }
 }

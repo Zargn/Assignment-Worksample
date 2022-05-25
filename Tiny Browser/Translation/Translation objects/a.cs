@@ -20,11 +20,15 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
 {
     public readonly string Url;
     public readonly string Description;
+    public static int nextId;
+    public readonly int LinkId;
 
     public HtmlHyperlink(string url, string description)
     {
         Url = url;
         Description = description;
+        LinkId = nextId;
+        nextId++;
     }
 
     public override string ToString()
@@ -39,6 +43,6 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
 
     public override void OnDraw()
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"[{LinkId}] {this}");
     }
 }

@@ -34,6 +34,6 @@ public class HtmlComment : TinyBrowserHtmlObject
 
     public override void OnDraw()
     {
-        throw new NotImplementedException();
+        // Do nothing...
     }
 }
