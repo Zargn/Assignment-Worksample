@@ -1,4 +1,5 @@
-﻿using TinyHtmlReader;
+﻿using Tiny_Browser.Networking;
+using TinyHtmlReader;
 
 namespace Tiny_Browser.Translation.Translation_objects;
 
@@ -20,15 +21,12 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
 {
     public readonly string Url;
     public readonly string Description;
-    public static int nextId;
-    public readonly int LinkId;
+    public int LinkId;
 
     public HtmlHyperlink(string url, string description)
     {
         Url = url;
         Description = description;
-        LinkId = nextId;
-        nextId++;
     }
 
     public override string ToString()
@@ -44,5 +42,20 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
     public override void OnDraw()
     {
         Console.WriteLine($"[{LinkId}] {this}");
+    }
+
+    public void ModifyHttp11Request(Http11Request http11Request)
+    {
+        if (Url.Contains("//"))
+        {
+            // It is a external link
+            http11Request.Headers["Host"] = TranslationCollection.GetStringBetween(Url, "//", "/");
+            int startPos = Url.IndexOf("/", Url.IndexOf("//", StringComparison.Ordinal) + 2, StringComparison.Ordinal);
+            http11Request.Path = Url.Substring(startPos);
+        }
+        else
+        {
+            // It is a internal link
+        }
     }
 }
