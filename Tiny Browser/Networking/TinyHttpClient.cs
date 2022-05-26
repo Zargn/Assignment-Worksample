@@ -2,18 +2,16 @@
 
 public class TinyHttpClient
 {
-    public string? SendHttpRequest(string hostname, int port)
+    public string? SendHttpRequest(string hostname, int port, string http11Request)
     {
         TcpConnection tcpConnection = new TcpConnection(hostname, port);
-        // tcpConnection.SendMessage(GetRequest(hostname));
-        tcpConnection.SendMessage(new Http11Request("GET", "/", hostname).ToString());
+
+        tcpConnection.SendMessage(http11Request);
 
         var receive = tcpConnection.WaitForResponse();
 
         receive.Wait();
 
-        var result = receive.Result;
-
-        return result;
+        return receive.Result;
     }
 }

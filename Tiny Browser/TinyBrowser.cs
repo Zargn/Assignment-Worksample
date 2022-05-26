@@ -20,10 +20,12 @@ public class TinyBrowser
         HtmlReader htmlReader = new(translationCollection.TagHandlers);
         TinyHttpClient tinyHttpClient = new();
         
-        var hostname = AskUserForStringInput("Please enter hostname");
-        var port = AskUserForIntegerInput("Please enter port number");
+        
+        var hostname = Utility.AskUserForStringInput("Please enter hostname");
+        var port = Utility.AskUserForIntegerInput("Please enter port number");
+        
 
-        var result = tinyHttpClient.SendHttpRequest(hostname, port);
+        var result = tinyHttpClient.SendHttpRequest(hostname, port, new Http11Request("GET", "/", hostname).ToString());
         Console.WriteLine(result);
 
         List<TinyBrowserHtmlObject> htmlObjects = new();
@@ -31,41 +33,9 @@ public class TinyBrowser
         foreach (var htmlObjectBase in htmlReader.ExtractHtmlObjects(result))
         {
             htmlObjects.Add(htmlObjectBase as TinyBrowserHtmlObject);
-            
-            // var type = AppDomain
-            //     .CurrentDomain.GetAssemblies()
-            //     .Select(assembly => assembly.GetType(htmlObjectBase.Type))
-            //     .SingleOrDefault(type => type != null);
-            //
-            // var htmlObject = Convert.ChangeType(htmlObjectBase, type);
-            // outputString.Append($"\n{htmlObject}");
         }
 
         var loadedPage = new LoadedWebpage(htmlObjects);
-    }
 
-    
-    
-    private string AskUserForStringInput(string question)
-    {
-        Console.WriteLine(question + " :");
-        return Console.ReadLine();
-    }
-
-    private int AskUserForIntegerInput(string question)
-    {
-        while (true)
-        {
-            try
-            {
-                var inputString = AskUserForStringInput(question);
-                var inputInteger = Int32.Parse(inputString);
-                return inputInteger;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Incorrect format! Only numbers are allowed. Please try again.");
-            }
-        }
     }
 }
