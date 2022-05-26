@@ -56,6 +56,7 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
         else
         {
             // It is a internal link
+            http11Request.Path += Url;
         }
     }
 }

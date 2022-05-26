@@ -45,7 +45,7 @@ public class TinyBrowser
         var page = GetWebPage(port, http11Request);
         page.DrawPage();
 
-        if (page.TryUpdateRequestBasedOnLink(http11Request, 46))
+        if (page.TryUpdateRequestBasedOnLink(http11Request, 0))
         {
             var page2 = GetWebPage(port, http11Request);
             page2.DrawPage();
