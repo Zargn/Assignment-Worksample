@@ -53,6 +53,12 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
             int startPos = Url.IndexOf("/", Url.IndexOf("//", StringComparison.Ordinal) + 2, StringComparison.Ordinal);
             http11Request.Path = Url.Substring(startPos);
         }
+
+        if (Url.Contains(".."))
+        {
+            // It is a internal link to root
+            http11Request.Path = "/";
+        }
         else
         {
             // It is a internal link
