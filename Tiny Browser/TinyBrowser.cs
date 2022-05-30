@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Tiny_Browser.Networking;
+﻿using Tiny_Browser.Networking;
 using Tiny_Browser.Translation.Translation_objects;
 using Tiny_Browser.Ui;
 using TinyHtmlReader;

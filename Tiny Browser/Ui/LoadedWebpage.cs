@@ -19,8 +19,6 @@ public class LoadedWebpage
         
         foreach (var htmlElement in htmlElements)
         {
-            
-            
             switch (htmlElement)
             {
                 case HtmlHyperlink htmlHyperlink:
@@ -33,11 +31,6 @@ public class LoadedWebpage
             }
             
             htmlElement.OnDraw();
-
-            // if (htmlElement is HtmlHyperlink)
-            //     outputString.Append($"\n[{linkId++}]{htmlElement}");
-            // else
-            //     outputString.Append($"\n{htmlElement}");
         }
 
         WebPage = stringBuilder.ToString();
