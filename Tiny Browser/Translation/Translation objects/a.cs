@@ -53,8 +53,16 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
             int startPos = Url.IndexOf("/", Url.IndexOf("//", StringComparison.Ordinal) + 2, StringComparison.Ordinal);
             http11Request.Path = Url.Substring(startPos);
         }
-
-        if (Url.Contains(".."))
+        else if (Url.Contains("../"))
+        {
+            Console.WriteLine(http11Request.Path);
+            // It is a link to parent directory
+            int cutIndex = http11Request.Path.LastIndexOf("/", http11Request.Path.Length - 2, StringComparison.Ordinal);
+            var newPath = http11Request.Path.Substring(0, cutIndex + 1);
+            http11Request.Path = newPath + Url.Substring(3);
+            Console.WriteLine(http11Request.Path);
+        }
+        else if (Url == "./")
         {
             // It is a internal link to root
             http11Request.Path = "/";
