@@ -15,13 +15,18 @@ public class TinyBrowser
     private readonly TinyHttpClient tinyHttpClient = new();
     private readonly HtmlReader htmlReader;
 
+    private readonly Stack<LoadedWebpage> webPageHistory = new();
+    private Stack<LoadedWebpage> goBackHistory = new();
+    private LoadedWebpage currentLoadedWebpage;
+
+
     private int port;
     
     public TinyBrowser()
     {
         htmlReader = new(translationCollection.TagHandlers);
     }
-    
+
     public void Run()
     {
         var hostname = Utility.AskUserForStringInput("Please enter hostname");
@@ -31,18 +36,19 @@ public class TinyBrowser
         
         
         var page = GetWebPage(http11Request);
-        page.DrawPage();
-        var currentLoadedWebpage = page;
+        page.DrawPage(); 
+        currentLoadedWebpage = page;
 
         
         while (true)
         {
             currentLoadedWebpage.DrawPage();
-            switch (Utility.AskUserForStringInput("Enter selection. [U] = link selection, [Q] = quit"))
+            switch (Utility.AskUserForStringInput("Enter selection. [U] = link selection, [Q] = quit, [B] = back, [F] = forward"))
             {
                 case "U":
                     if (TryGetWebpage(currentLoadedWebpage, http11Request, out LoadedWebpage newPage))
                     {
+                        webPageHistory.Push(currentLoadedWebpage);
                         currentLoadedWebpage = newPage;
                     }
                     else
@@ -52,11 +58,42 @@ public class TinyBrowser
                     break;
                 case "Q":
                     return;
+                case "B":
+                    GoBack();
+                    break;
+                case "F":
+                    GoForward();
+                    break;
+                    
                 default:
                     Console.WriteLine("Invalid input");
                     break;
             }
         }
+    }
+
+    private void GoBack()
+    {
+        if (webPageHistory.Count == 0)
+        {
+            Console.WriteLine("History is empty, go to a new page to be able to go back!");
+            return;
+        }
+        
+        goBackHistory.Push(currentLoadedWebpage);
+        currentLoadedWebpage = webPageHistory.Pop();
+    }
+
+    private void GoForward()
+    {
+        if (goBackHistory.Count == 0)
+        {
+            Console.WriteLine("Can't go further forward as this is the end of the history.");
+            return;
+        }
+        
+        webPageHistory.Push(currentLoadedWebpage);
+        currentLoadedWebpage = goBackHistory.Pop();
     }
 
     private bool TryGetWebpage(LoadedWebpage currentPage, Http11Request http11Request, out LoadedWebpage newPage)
