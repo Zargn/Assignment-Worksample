@@ -2,6 +2,7 @@
 using Tiny_Browser.Translation.Translation_objects;
 using Tiny_Browser.Ui;
 using TinyHtmlReader;
+using ConsoleUtils;
 
 namespace Tiny_Browser;
 

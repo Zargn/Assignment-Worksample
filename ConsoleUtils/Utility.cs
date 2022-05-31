@@ -1,4 +1,4 @@
-﻿namespace Tiny_Browser;
+﻿namespace ConsoleUtils;
 
 public class Utility
 {

@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ConsoleUtils\ConsoleUtils.csproj" />
       <ProjectReference Include="..\TinyHtmlReader\TinyHtmlReader.csproj" />
     </ItemGroup>
 
