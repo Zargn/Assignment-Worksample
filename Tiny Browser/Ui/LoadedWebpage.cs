@@ -29,8 +29,11 @@ public class LoadedWebpage
                     Title = htmlTitle.Title;
                     break;
             }
-            
-            htmlElement.OnDraw();
+
+            var elementDisplay = htmlElement.GetDisplayString();
+            if (elementDisplay == null)
+                continue;
+            stringBuilder.AppendLine(elementDisplay);
         }
 
         WebPage = stringBuilder.ToString();

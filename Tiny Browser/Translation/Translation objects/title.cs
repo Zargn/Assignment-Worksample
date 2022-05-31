@@ -34,8 +34,8 @@ public class HtmlTitle : TinyBrowserHtmlObject
         throw new NotImplementedException();
     }
 
-    public override void OnDraw()
+    public override string? GetDisplayString()
     {
-        Console.WriteLine(this);
+        return ToString();
     }
 }

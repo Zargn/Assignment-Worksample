@@ -39,9 +39,9 @@ public class HtmlHyperlink : TinyBrowserHtmlObject
         throw new NotImplementedException();
     }
 
-    public override void OnDraw()
+    public override string? GetDisplayString()
     {
-        Console.WriteLine($"[{LinkId}] {this}");
+        return $"[{LinkId}] {this}";
     }
 
     public void ModifyHttp11Request(Http11Request http11Request)

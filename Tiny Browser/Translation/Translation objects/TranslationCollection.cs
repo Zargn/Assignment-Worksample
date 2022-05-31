@@ -32,5 +32,5 @@ public abstract class TinyBrowserHtmlObject : HtmlObjectBase
     /// <summary>
     /// Called once when the page is loaded.
     /// </summary>
-    public abstract void OnDraw();
+    public abstract string? GetDisplayString();
 }
