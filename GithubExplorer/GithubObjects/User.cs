@@ -28,20 +28,9 @@ public record User : IUser
     
     public IRepository GetRepository(string repositoryName)
     {
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"users/{login}/repos");
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"repos/{login}/{repositoryName}");
         var response = httpClient.SendRequest(request);
-
-        Console.WriteLine(response);
-        
-        var json = new StreamReader(response.Content.ReadAsStream()).ReadToEnd();
-
-        Console.WriteLine(json);
-
-        // var user = JsonSerializer.Deserialize<User>(json, serializeAllFields);
-
-        // return user;
-        
-        throw new NotImplementedException();
+        return response.Deserialize<Repository>();
     }
 
     public void Draw()

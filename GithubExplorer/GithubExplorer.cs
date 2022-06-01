@@ -26,5 +26,9 @@ public class GithubExplorer
         {
             VARIABLE.Draw();
         }
+
+        Console.WriteLine("-------------------");
+        var repository = user.GetRepository("TinyEngine");
+        repository.Draw();
     }
 }
