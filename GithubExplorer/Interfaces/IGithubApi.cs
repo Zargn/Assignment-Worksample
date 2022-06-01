@@ -12,7 +12,7 @@ public interface IGithubAPI
     public IUser GetUser(string userName);
 }
 
-public interface IUser
+public interface IUser : IDisplayable
 {
     /// <summary>
     /// Try getting the a repository with the provided name from this user.
@@ -25,7 +25,7 @@ public interface IUser
     public string Location { get; }
 }
 
-public interface IRepository
+public interface IRepository : IDisplayable
 {
     public string Name { get; }
     public string Description { get; }
