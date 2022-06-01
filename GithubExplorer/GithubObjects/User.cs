@@ -10,14 +10,14 @@ public record User : IUser
     public string name { get; init; }
     public string location { get; init; }
     public string login { get; init; }
+    
+    private IHttpClient httpClient;
 
-    public static IHttpClient httpClient = new HttpConnection();
-    
-    // public User(IHttpClient httpClient)
-    // {
-    //     this.httpClient = httpClient;
-    // }
-    
+    public void SetHttpClient(IHttpClient httpClient)
+    {
+        this.httpClient = httpClient;
+    }
+
     public IRepository[] GetAllPublicRepositories()
     {
         var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"users/{login}/repos"));

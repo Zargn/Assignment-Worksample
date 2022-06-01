@@ -18,6 +18,8 @@ public class GithubAPI : IGithubAPI
     public IUser GetUser(string userName)
     {
         var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"users/{userName}"));
-        return response.Deserialize<User>();
+        var user = response.Deserialize<User>();
+        user.SetHttpClient(httpClient);
+        return user;
     }
 }
