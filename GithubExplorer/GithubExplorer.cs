@@ -10,18 +10,21 @@ public class GithubExplorer
 {
     public void Run()
     {
-        var targetUser = Utility.AskUserForStringInput(@"Welcome to this very limited github browser!
-Please enter a user you like to inspect!");
+//         var targetUser = Utility.AskUserForStringInput(@"Welcome to this very limited github browser!
+// Please enter a user you like to inspect!");
 
         IHttpClient httpClient = new HttpConnection();
         IGithubAPI githubApi = new GithubAPI(httpClient);
         
-        var user = githubApi.GetUser(targetUser);
+        var user = githubApi.GetUser("Zargn");
         user.Draw();
 
-        var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
+        // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
-        var repository = user.GetRepository(targetRepository);
-        repository.Draw();
+        var repositories = user.GetAllPublicRepositories();
+        foreach (var VARIABLE in repositories)
+        {
+            VARIABLE.Draw();
+        }
     }
 }
