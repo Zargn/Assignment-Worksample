@@ -21,12 +21,12 @@ public interface IUser : IDisplayable
     /// <returns></returns>
     public IRepository GetRepository(string repositoryName);
     
-    public string Name { get; }
-    public string Location { get; }
+    public string name { get; init; }
+    public string location { get; init; }
 }
 
 public interface IRepository : IDisplayable
 {
-    public string Name { get; }
-    public string Description { get; }
+    public string name { get; init; }
+    public string description { get; init; }
 }

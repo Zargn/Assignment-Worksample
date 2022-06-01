@@ -4,11 +4,11 @@ namespace GithubExplorer.GithubObjects;
 
 public class Repository : IRepository
 {
-    public string Name { get; }
-    public string Description { get; }
-    
+    public string name { get; init; }
+    public string description { get; init; }
+
     public void Draw()
     {
-        throw new NotImplementedException();
+        Console.WriteLine(this);
     }
 }

@@ -2,17 +2,21 @@
 
 namespace GithubExplorer.GithubObjects;
 
-public class User : IUser
+
+
+public record User : IUser
 {
     public IRepository GetRepository(string repositoryName)
     {
         throw new NotImplementedException();
     }
 
-    public string Name { get; }
-    public string Location { get; }
+    public string name { get; init; }
+    public string location { get; init; }
+    
+
     public void Draw()
     {
-        throw new NotImplementedException();
+        Console.WriteLine(this);
     }
 }
