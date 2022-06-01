@@ -10,6 +10,7 @@ public class HttpConnection : IHttpClient
     public HttpConnection()
     {
         httpClient.BaseAddress = new Uri("https://api.github.com");
+        AddDefaultHeaders("User-Agent", "TinyGithubBrowser");
     }
 
     public HttpResponseMessage SendRequest(HttpRequestMessage httpRequestMessage)
