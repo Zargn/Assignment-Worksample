@@ -20,9 +20,16 @@ public interface IUser : IDisplayable
     /// <param name="repositoryName"></param>
     /// <returns></returns>
     public IRepository GetRepository(string repositoryName);
+
+    /// <summary>
+    /// Get all public repositories owned by this user.
+    /// </summary>
+    /// <returns></returns>
+    public IRepository[] GetAllPublicRepositories();
     
     public string name { get; init; }
     public string location { get; init; }
+    public string login { get; init; }
 }
 
 public interface IRepository : IDisplayable
