@@ -4,7 +4,7 @@ public class Utility
 {
     public static string AskUserForStringInput(string question)
     {
-        Console.WriteLine(question + " :");
+        Console.WriteLine(question);
         return Console.ReadLine();
     }
 
