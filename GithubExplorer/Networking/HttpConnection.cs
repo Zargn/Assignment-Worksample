@@ -7,10 +7,10 @@ public class HttpConnection : IHttpClient
     // HttpClient is intended to be instantiated once per application, rather than per-use. See microsoft docs.
     static readonly HttpClient httpClient = new();
 
-    public HttpConnection()
+    static HttpConnection()
     {
         httpClient.BaseAddress = new Uri("https://api.github.com");
-        AddDefaultHeaders("User-Agent", "TinyGithubBrowser");
+        httpClient.DefaultRequestHeaders.Add("User-Agent", "TinyGithubBrowser");
     }
 
     public HttpResponseMessage SendRequest(HttpRequestMessage httpRequestMessage)
