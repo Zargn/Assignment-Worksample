@@ -15,25 +15,61 @@ public interface IGithubAPI
 public interface IUser : IDisplayable
 {
     /// <summary>
-    /// Try getting the a repository with the provided name from this user.
+    /// Get all user repositories.
     /// </summary>
-    /// <param name="repositoryName"></param>
-    /// <returns></returns>
-    public IRepository GetRepository(string repositoryName);
+    public IEnumerable<IRepository> Repositories { get; }
+    
+    /// <summary>
+    /// Get user profile information.
+    /// </summary>
+    public IUserProfile UserProfile { get; }
 
     /// <summary>
-    /// Get all public repositories owned by this user.
+    /// Try getting a repository with the provided name from this user.
     /// </summary>
+    /// <param name="repositoryName"></param>
+    /// <param name="repository"></param>
     /// <returns></returns>
-    public IRepository[] GetAllPublicRepositories();
+    public bool TryGetRepository(string repositoryName, out IRepository repository);
     
+    // /// <summary>
+    // /// Get all public repositories owned by this user.
+    // /// </summary>
+    // /// <returns></returns>
+    // public IRepository[] GetAllPublicRepositories();
+}
+
+public interface IUserProfile
+{
     public string name { get; init; }
     public string location { get; init; }
     public string login { get; init; }
 }
 
+
 public interface IRepository : IDisplayable
 {
     public string name { get; init; }
     public string description { get; init; }
+
+    /// <summary>
+    /// Try getting a issue by name.
+    /// </summary>
+    /// <param name="issueId"></param>
+    /// <returns></returns>
+    public IIssue GetIssues(int issueId);
+
+    /// <summary>
+    /// Get all issues in this repository.
+    /// </summary>
+    /// <returns></returns>
+    public IIssue[] GetAllIssues();
+}
+
+public interface IIssue : IDisplayable
+{
+    public string title { get; init; }
+    public string state { get; init; }
+    public string body { get; init; }
+    public int number { get; init; }
 }

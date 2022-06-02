@@ -1,40 +1,51 @@
-﻿using System.Text.Json;
-using GithubExplorer.Interfaces;
-using GithubExplorer.Networking;
+﻿using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.GithubObjects;
 
 
 public record User : IUser
 {
-    public string name { get; init; }
-    public string location { get; init; }
-    public string login { get; init; }
+    public IEnumerable<IRepository> Repositories
+    {
+        get
+        {
+            var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"users/{UserProfile.login}/repos"));
+            return response.Deserialize<Repository[]>();
+        }
+    }
+    
+    public IUserProfile UserProfile { get; }
     
     private IHttpClient httpClient;
 
-    public void SetHttpClient(IHttpClient httpClient)
+    
+    
+    public User(IHttpClient httpClient, IUserProfile userProfile)
     {
         this.httpClient = httpClient;
+        UserProfile = userProfile;
     }
-
-    public IRepository[] GetAllPublicRepositories()
-    {
-        var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"users/{login}/repos"));
-
-        return response.Deserialize<Repository[]>();
-    }
-
     
-    public IRepository GetRepository(string repositoryName)
+    
+    
+    public bool TryGetRepository(string repositoryName, out IRepository repository)
     {
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"repos/{login}/{repositoryName}");
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"repos/{UserProfile.login}/{repositoryName}");
         var response = httpClient.SendRequest(request);
-        return response.Deserialize<Repository>();
+        repository = response.Deserialize<Repository>();
+        return repository.name != null;
     }
-
+    
     public void Draw()
     {
-        Console.WriteLine(this);
+        Console.WriteLine(UserProfile);
     }
+}
+
+
+public record UserProfile : IUserProfile
+{
+    public string name { get; init; }
+    public string location { get; init; }
+    public string login { get; init; }
 }

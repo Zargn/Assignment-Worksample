@@ -1,4 +1,5 @@
 ﻿using ConsoleUtils;
+using GithubExplorer.GithubObjects;
 using GithubExplorer.Interfaces;
 using GithubExplorer.Networking;
 
@@ -21,14 +22,20 @@ public class GithubExplorer
 
         // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
-        var repositories = user.GetAllPublicRepositories();
+        var repositories = user.Repositories;
         foreach (var VARIABLE in repositories)
         {
             VARIABLE.Draw();
         }
 
         Console.WriteLine("-------------------");
-        var repository = user.GetRepository("TinyEngine");
-        repository.Draw();
+        if (user.TryGetRepository("TinyEngineeee", out IRepository repository))
+        {
+            repository.Draw();
+        }
+        else
+        {
+            Console.WriteLine("not found");
+        }
     }
 }
