@@ -29,7 +29,7 @@ public class GithubExplorer
         }
 
         Console.WriteLine("-------------------");
-        if (user.TryGetRepository("TinyEngineeee", out IRepository repository))
+        if (user.TryGetRepository("TinyEngine", out IRepository repository))
         {
             repository.Draw();
         }

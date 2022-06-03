@@ -31,45 +31,74 @@ public interface IUser : IDisplayable
     /// <param name="repository"></param>
     /// <returns></returns>
     public bool TryGetRepository(string repositoryName, out IRepository repository);
-    
-    // /// <summary>
-    // /// Get all public repositories owned by this user.
-    // /// </summary>
-    // /// <returns></returns>
-    // public IRepository[] GetAllPublicRepositories();
 }
 
 public interface IUserProfile
 {
-    public string name { get; init; }
-    public string location { get; init; }
-    public string login { get; init; }
+    public string name { get; }
+    public string location { get; }
+    public string login { get; }
+}
+
+public interface IUserReference
+{
+    public string login { get; }
+    public int id { get; }
 }
 
 
 public interface IRepository : IDisplayable
 {
-    public string name { get; init; }
-    public string description { get; init; }
+    public IRepositoryData RepositoryData { get; }
+    
+    
+    
+    /// <summary>
+    /// Contains all issues attached to this repository.
+    /// </summary>
+    public IEnumerable<IIssue> Issues { get; }
 
     /// <summary>
     /// Try getting a issue by name.
     /// </summary>
     /// <param name="issueId"></param>
+    /// <param name="issue"></param>
     /// <returns></returns>
-    public IIssue GetIssues(int issueId);
+    public IIssue TryGetIssue(int issueId, out IIssue issue);
+}
 
-    /// <summary>
-    /// Get all issues in this repository.
-    /// </summary>
-    /// <returns></returns>
-    public IIssue[] GetAllIssues();
+public interface IRepositoryData
+{
+    public string name { get; }
+    public string description { get; }
+    public IUserReference owner { get; }
 }
 
 public interface IIssue : IDisplayable
 {
-    public string title { get; init; }
-    public string state { get; init; }
-    public string body { get; init; }
-    public int number { get; init; }
+    public IIssueData IssueData { get; }
+    public IRepository Repository { get; }
+    public IEnumerable<IComment> Comments { get; }
+    public void Close();
+    public void CreateComment();
+}
+
+public interface IIssueData
+{
+    public string title { get; }
+    public string state { get; }
+    public string body { get; }
+    public int number { get; }
+}
+
+public interface IComment : IDisplayable
+{
+    public void Edit();
+    public void Delete();
+}
+
+public interface ICommentData
+{
+    public int id { get; }
+    public string body { get; }
 }

@@ -10,7 +10,11 @@ public record User : IUser
         get
         {
             var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"users/{UserProfile.login}/repos"));
-            return response.Deserialize<Repository[]>();
+            var repositoryDataArray = response.Deserialize<RepositoryData[]>();
+            foreach (var repositoryData in repositoryDataArray)
+            {
+                yield return new Repository(repositoryData, httpClient);
+            }
         }
     }
     
@@ -32,8 +36,10 @@ public record User : IUser
     {
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"repos/{UserProfile.login}/{repositoryName}");
         var response = httpClient.SendRequest(request);
-        repository = response.Deserialize<Repository>();
-        return repository.name != null;
+        var repositoryData = response.Deserialize<RepositoryData>();
+        repository = new Repository(repositoryData, httpClient);
+        return repository.RepositoryData.name != null;
+
     }
     
     public void Draw()
@@ -48,4 +54,10 @@ public record UserProfile : IUserProfile
     public string name { get; init; }
     public string location { get; init; }
     public string login { get; init; }
+}
+
+public record UserReference : IUserReference
+{
+    public string login { get; init; }
+    public int id { get; init; }
 }
