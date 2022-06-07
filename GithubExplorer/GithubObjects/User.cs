@@ -45,7 +45,7 @@ public record User : IUser
     
     public void Draw()
     {
-        Utility.WriteLineToConsoleBuffer(UserProfile);
+        TurboOutput.WriteLineToBuffer(UserProfile);
     }
 }
 

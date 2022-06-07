@@ -19,7 +19,7 @@ public class GithubExplorer
         
         var user = githubApi.GetUser("projectmesa");
         user.Draw();
-        Utility.PrintConsoleBuffer();
+        TurboOutput.PrintBuffer();
 
         // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
@@ -28,7 +28,7 @@ public class GithubExplorer
         {
             VARIABLE.Draw();
         }
-        Utility.PrintConsoleBuffer();
+        TurboOutput.PrintBuffer();
 
         Console.WriteLine("-------------------");
         if (user.TryGetRepository("mesa", out IRepository repository))
@@ -39,7 +39,7 @@ public class GithubExplorer
             {
                 VARIABLE.Draw();
             }
-            Utility.PrintConsoleBuffer();
+            TurboOutput.PrintBuffer();
         }
         else
         {

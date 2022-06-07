@@ -26,33 +26,4 @@ public class Utility
             }
         }
     }
-
-
-    private static StringBuilder sb = new();
-    
-    public static void WriteLineToConsoleBuffer(string s)
-    {
-        sb.AppendLine(s);
-    }
-    
-    public static void WriteLineToConsoleBuffer(object obj)
-    {
-        WriteLineToConsoleBuffer(obj.ToString());
-    }
-
-    public static void WriteToConsoleBuffer(string s)
-    {
-        sb.Append(s);
-    }
-    
-    public static void WriteToConsoleBuffer(object obj)
-    {
-        WriteToConsoleBuffer(obj.ToString());
-    }
-
-    public static void PrintConsoleBuffer()
-    {
-        Console.WriteLine(sb);
-        sb.Clear();
-    }
 }

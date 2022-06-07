@@ -38,7 +38,7 @@ public record Repository : IRepository
     
     public void Draw()
     {
-        Utility.WriteLineToConsoleBuffer(RepositoryData);
+        TurboOutput.WriteLineToBuffer(RepositoryData);
     }
 }
 

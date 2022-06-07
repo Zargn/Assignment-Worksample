@@ -12,7 +12,7 @@ public record Issue : IIssue
     
     public void Draw()
     {
-        Utility.WriteLineToConsoleBuffer(IssueData);
+        TurboOutput.WriteLineToBuffer(IssueData);
     }
 
     public IIssueData IssueData { get; }
