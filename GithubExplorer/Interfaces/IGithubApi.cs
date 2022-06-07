@@ -71,7 +71,7 @@ public interface IRepositoryData
 {
     public string name { get; }
     public string description { get; }
-    public IUserReference owner { get; }
+    public string issues_url { get; }
 }
 
 public interface IIssue : IDisplayable

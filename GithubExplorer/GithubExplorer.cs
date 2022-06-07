@@ -17,8 +17,9 @@ public class GithubExplorer
         IHttpClient httpClient = new HttpConnection();
         IGithubAPI githubApi = new GithubAPI(httpClient);
         
-        var user = githubApi.GetUser("Zargn");
+        var user = githubApi.GetUser("projectmesa");
         user.Draw();
+        Utility.PrintConsoleBuffer();
 
         // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
@@ -27,11 +28,18 @@ public class GithubExplorer
         {
             VARIABLE.Draw();
         }
+        Utility.PrintConsoleBuffer();
 
         Console.WriteLine("-------------------");
-        if (user.TryGetRepository("TinyEngine", out IRepository repository))
+        if (user.TryGetRepository("mesa", out IRepository repository))
         {
             repository.Draw();
+            var i = repository.Issues;
+            foreach (var VARIABLE in i)
+            {
+                VARIABLE.Draw();
+            }
+            Utility.PrintConsoleBuffer();
         }
         else
         {

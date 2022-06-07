@@ -1,4 +1,6 @@
-﻿using GithubExplorer.Interfaces;
+﻿using System.Runtime.CompilerServices;
+using ConsoleUtils;
+using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.GithubObjects;
 
@@ -8,12 +10,17 @@ public record Repository : IRepository
 
     public IEnumerable<IIssue> Issues
     {
-        get;
-        // get
-        // {
-        //     var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"repos/{RepositoryData.login}/{RepositoryData.name}/issues"));
-        //     return response.Deserialize<I[]>();
-        // }
+        // get;
+        get
+        {
+            // var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, $"repos/{RepositoryData.login}/{RepositoryData.name}/issues"));
+            var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, RepositoryData.issues_url.Replace("{/number}", "")));
+            var issueDatas = response.Deserialize<IssueData[]>();
+            foreach (var issueData in issueDatas)
+            {
+                yield return new Issue(issueData, httpClient);
+            }
+        }
     }
 
     private IHttpClient httpClient;
@@ -31,7 +38,7 @@ public record Repository : IRepository
     
     public void Draw()
     {
-        Console.WriteLine(RepositoryData);
+        Utility.WriteLineToConsoleBuffer(RepositoryData);
     }
 }
 
@@ -39,5 +46,5 @@ public record RepositoryData : IRepositoryData
 {
     public string name { get; init; }
     public string description { get; init; }
-    public IUserReference owner { get; init; }
+    public string issues_url { get; init; }
 }

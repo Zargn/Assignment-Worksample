@@ -1,4 +1,5 @@
-﻿using GithubExplorer.Interfaces;
+﻿using ConsoleUtils;
+using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.GithubObjects;
 
@@ -44,7 +45,7 @@ public record User : IUser
     
     public void Draw()
     {
-        Console.WriteLine(UserProfile);
+        Utility.WriteLineToConsoleBuffer(UserProfile);
     }
 }
 
