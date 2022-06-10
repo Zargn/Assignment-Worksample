@@ -12,7 +12,14 @@ public record Issue : IIssue
     
     public void Draw()
     {
-        TurboOutput.WriteLineToBuffer(IssueData);
+        TurboOutput.WriteLineToBuffer(@$"
+########################################################################################################################
+Issue: {IssueData.title} [{IssueData.number}]
+State: {IssueData.state}
+
+Issue body:
+{IssueData.body}
+");
     }
 
     public IIssueData IssueData { get; }

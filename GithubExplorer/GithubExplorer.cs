@@ -17,7 +17,7 @@ public class GithubExplorer
         IHttpClient httpClient = new HttpConnection();
         IGithubAPI githubApi = new GithubAPI(httpClient);
         
-        var user = githubApi.GetUser("projectmesa");
+        var user = githubApi.GetUser("Zargn");
         user.Draw();
         TurboOutput.PrintBuffer();
 
@@ -31,7 +31,7 @@ public class GithubExplorer
         TurboOutput.PrintBuffer();
 
         Console.WriteLine("-------------------");
-        if (user.TryGetRepository("mesa", out IRepository repository))
+        if (user.TryGetRepository("TinyEngine", out IRepository repository))
         {
             repository.Draw();
             var i = repository.Issues;
