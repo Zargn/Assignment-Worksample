@@ -44,11 +44,26 @@ public class GithubExplorer
             
             TurboOutput.PrintBuffer();
 
-            var title = Utility.AskUserForStringInput("Please enter issue title: ");
-            var body = Utility.AskUserForStringInput("Please enter issue body: ");
-            var createdIssue = repository.CreateIssue(title, body, user.UserProfile.login);
-            createdIssue.Draw();
-            TurboOutput.PrintBuffer();
+            // var title = Utility.AskUserForStringInput("Please enter issue title: ");
+            // var body = Utility.AskUserForStringInput("Please enter issue body: ");
+            // var createdIssue = repository.CreateIssue(title, body, user.UserProfile.login);
+            // createdIssue.Draw();
+            // TurboOutput.PrintBuffer();
+
+            var id = Utility.AskUserForIntegerInput("Please enter id of issue to edit: ");
+            if (repository.TryGetIssue(id, out IIssue issue))
+            {
+                var newTitle = Utility.AskUserForStringInput("Please enter issue title: ");
+                var newBody = Utility.AskUserForStringInput("Please enter issue body: ");
+
+                var updatedIssue = issue.UpdateIssue(newTitle, newBody);
+                updatedIssue.Draw();
+                TurboOutput.PrintBuffer();
+            }
+            else
+            {
+                Console.WriteLine("not found");
+            }
         }
         else
         {

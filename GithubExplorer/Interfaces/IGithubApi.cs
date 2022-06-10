@@ -64,7 +64,7 @@ public interface IRepository : IDisplayable
     /// <param name="issueId"></param>
     /// <param name="issue"></param>
     /// <returns></returns>
-    public IIssue TryGetIssue(int issueId, out IIssue issue);
+    public bool TryGetIssue(int issueId, out IIssue issue);
 
     public IIssue CreateIssue(string title, string body, string owner);
 }
@@ -83,6 +83,7 @@ public interface IIssue : IDisplayable
     public IEnumerable<IComment> Comments { get; }
     public void Close();
     public void CreateComment();
+    public IIssue UpdateIssue(string title, string body);
 }
 
 public interface IIssueData
@@ -91,6 +92,7 @@ public interface IIssueData
     public string state { get; }
     public string body { get; }
     public int number { get; }
+    public string url { get; }
 }
 
 public interface IComment : IDisplayable

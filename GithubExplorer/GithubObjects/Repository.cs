@@ -32,9 +32,12 @@ public record Repository : IRepository
         RepositoryData = repositoryData;
     }
     
-    public IIssue TryGetIssue(int issueId, out IIssue issue)
+    public bool TryGetIssue(int issueId, out IIssue issue)
     {
-        throw new NotImplementedException();
+        var response = httpClient.SendRequest(new HttpRequestMessage(HttpMethod.Get, RepositoryData.issues_url.Replace("{/number}", $"/{issueId}")));
+        Console.WriteLine(response);
+        issue = new Issue(response.Deserialize<IssueData>(), httpClient);
+        return issue.IssueData.url != null;
     }
 
     public IIssue CreateIssue(string title, string body, string owner)
