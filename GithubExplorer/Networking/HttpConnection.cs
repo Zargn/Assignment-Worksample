@@ -1,4 +1,5 @@
-﻿using GithubExplorer.Interfaces;
+﻿using System.Net.Http.Headers;
+using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.Networking;
 
@@ -11,6 +12,8 @@ public class HttpConnection : IHttpClient
     {
         httpClient.BaseAddress = new Uri("https://api.github.com");
         httpClient.DefaultRequestHeaders.Add("User-Agent", "TinyGithubBrowser");
+        httpClient.DefaultRequestHeaders.Add("accept", "application/vnd.github.v3+json");
+        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("token", Auth.token);
     }
 
     public HttpResponseMessage SendRequest(HttpRequestMessage httpRequestMessage)

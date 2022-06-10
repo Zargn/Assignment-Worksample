@@ -23,23 +23,23 @@ public class GithubExplorer
 
         // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
-        // var repositories = user.Repositories;
-        // foreach (var VARIABLE in repositories)
-        // {
-        //     VARIABLE.Draw();
-        // }
-        // TurboOutput.PrintBuffer();
+        var repositories = user.Repositories;
+        foreach (var VARIABLE in repositories)
+        {
+            VARIABLE.Draw();
+        }
+        TurboOutput.PrintBuffer();
 
         Console.WriteLine("-------------------");
         if (user.TryGetRepository("TinyEngine", out IRepository repository))
         {
             repository.Draw();
 
-            // var i = repository.Issues;
-            // foreach (var VARIABLE in i)
-            // {
-            //     VARIABLE.Draw();
-            // }
+            var i = repository.Issues;
+            foreach (var VARIABLE in i)
+            {
+                VARIABLE.Draw();
+            }
             
             
             TurboOutput.PrintBuffer();
