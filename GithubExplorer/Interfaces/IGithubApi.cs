@@ -65,6 +65,8 @@ public interface IRepository : IDisplayable
     /// <param name="issue"></param>
     /// <returns></returns>
     public IIssue TryGetIssue(int issueId, out IIssue issue);
+
+    public IIssue CreateIssue(string title, string body, string owner);
 }
 
 public interface IRepositoryData

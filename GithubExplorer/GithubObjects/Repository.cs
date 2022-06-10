@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using ConsoleUtils;
 using GithubExplorer.Interfaces;
 
@@ -35,7 +36,21 @@ public record Repository : IRepository
     {
         throw new NotImplementedException();
     }
-    
+
+    public IIssue CreateIssue(string title, string body, string owner)
+    {
+        var issueRequest = new HttpRequestMessage(HttpMethod.Post, RepositoryData.issues_url.Replace("{/number}", ""));
+        // issueRequest.Content.Headers.Add("owner", owner);
+        // issueRequest.Content.Headers.Add("title", title);
+        // issueRequest.Content.Headers.Add("body", body);
+        issueRequest.Content = JsonContent.Create(new {title = title, body = body, owner = owner});
+        // issueRequest.Content = new StringContent();
+
+        var response = httpClient.SendRequest(issueRequest);
+        var issueData = response.Deserialize<IssueData>();
+        return new Issue(issueData, httpClient);
+    }
+
     public void Draw()
     {
         TurboOutput.WriteLineToBuffer(RepositoryData);
