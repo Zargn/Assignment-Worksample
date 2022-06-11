@@ -47,8 +47,15 @@ public class LocalLameScooterRental : ILameScooterRental
         }
     }
 
-    public Task<bool> TryGetStation(string stationName, out IStationModel stationModel)
+    public async Task<IStationModel> TryGetStation(string stationName)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return stationNameLookup[stationName];
+        }
+        catch (KeyNotFoundException)
+        {
+            return null;
+        }
     }
 }

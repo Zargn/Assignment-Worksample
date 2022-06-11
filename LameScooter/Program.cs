@@ -12,13 +12,6 @@ public class Program
         var stationName = Utility.AskUserForStringInput("Please enter station name to get statistics from: ");
         var amount = await scooterRental.GetAvailableScootersAtStation(stationName);
         Console.WriteLine(amount);
-        if (await scooterRental.TryGetStation(stationName, out IStationModel stationModel))
-        {
-            Console.WriteLine(stationModel);
-        }
-        else
-        {
-            Console.WriteLine("Station not found!");
-        }
+        Console.WriteLine(await scooterRental.TryGetStation(stationName));
     }
 }
