@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GithubExplorer", "GithubExp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraExtensionMethods", "ExtraExtensionMethods\ExtraExtensionMethods.csproj", "{3B622537-6255-411E-8BCC-1A670E94524A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LameScooter", "LameScooter", "{A9BD6415-05D9-428B-A7B3-BCEC329035C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LameScooter", "LameScooter\LameScooter.csproj", "{E2349691-2719-4589-8B14-A9B7E883C5FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,7 @@ Global
 		{B06D4872-6796-45A8-B940-B5E9EF5A56F3} = {B2C416D3-B3C6-4FD0-8372-750F4B7CB7D7}
 		{016E8487-6C1C-41BE-9C57-10ED6D2498B9} = {F2ADDBDD-124A-4900-8578-5D504345A401}
 		{3B622537-6255-411E-8BCC-1A670E94524A} = {B2C416D3-B3C6-4FD0-8372-750F4B7CB7D7}
+		{E2349691-2719-4589-8B14-A9B7E883C5FD} = {A9BD6415-05D9-428B-A7B3-BCEC329035C9}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +54,9 @@ Global
 		{3B622537-6255-411E-8BCC-1A670E94524A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B622537-6255-411E-8BCC-1A670E94524A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B622537-6255-411E-8BCC-1A670E94524A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2349691-2719-4589-8B14-A9B7E883C5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2349691-2719-4589-8B14-A9B7E883C5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2349691-2719-4589-8B14-A9B7E883C5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2349691-2719-4589-8B14-A9B7E883C5FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
