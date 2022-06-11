@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Serialization" />
+      <ProjectReference Include="..\ConsoleUtils\ConsoleUtils.csproj" />
     </ItemGroup>
 
 </Project>
