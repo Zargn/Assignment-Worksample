@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
 
-
-
-namespace GithubExplorer;
+namespace ConsoleUtils;
 
 public static class ExtensionMethods
 {
