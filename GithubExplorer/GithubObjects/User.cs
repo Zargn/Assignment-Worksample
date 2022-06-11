@@ -1,4 +1,5 @@
 ﻿using ConsoleUtils;
+using ExtraExtensionMethods;
 using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.GithubObjects;

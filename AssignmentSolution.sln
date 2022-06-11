@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GithubExplorer", "GithubExp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GithubExplorer", "GithubExplorer\GithubExplorer.csproj", "{016E8487-6C1C-41BE-9C57-10ED6D2498B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraExtensionMethods", "ExtraExtensionMethods\ExtraExtensionMethods.csproj", "{3B622537-6255-411E-8BCC-1A670E94524A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,7 @@ Global
 		{1C6E14B8-328F-4A1E-8E28-1E02B658E168} = {B2C416D3-B3C6-4FD0-8372-750F4B7CB7D7}
 		{B06D4872-6796-45A8-B940-B5E9EF5A56F3} = {B2C416D3-B3C6-4FD0-8372-750F4B7CB7D7}
 		{016E8487-6C1C-41BE-9C57-10ED6D2498B9} = {F2ADDBDD-124A-4900-8578-5D504345A401}
+		{3B622537-6255-411E-8BCC-1A670E94524A} = {B2C416D3-B3C6-4FD0-8372-750F4B7CB7D7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC747E8B-1EF5-4004-984C-2AF5EF8D6371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,9 @@ Global
 		{016E8487-6C1C-41BE-9C57-10ED6D2498B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{016E8487-6C1C-41BE-9C57-10ED6D2498B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{016E8487-6C1C-41BE-9C57-10ED6D2498B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B622537-6255-411E-8BCC-1A670E94524A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B622537-6255-411E-8BCC-1A670E94524A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B622537-6255-411E-8BCC-1A670E94524A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B622537-6255-411E-8BCC-1A670E94524A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

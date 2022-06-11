@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ConsoleUtils\ConsoleUtils.csproj" />
+      <ProjectReference Include="..\ExtraExtensionMethods\ExtraExtensionMethods.csproj" />
     </ItemGroup>
 
 </Project>

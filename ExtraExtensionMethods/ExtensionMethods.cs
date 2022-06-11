@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace ConsoleUtils;
+namespace ExtraExtensionMethods;
 
 public static class ExtensionMethods
 {

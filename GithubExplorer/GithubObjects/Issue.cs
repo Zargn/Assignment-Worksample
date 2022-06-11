@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using ConsoleUtils;
+using ExtraExtensionMethods;
 using GithubExplorer.Interfaces;
 
 namespace GithubExplorer.GithubObjects;
