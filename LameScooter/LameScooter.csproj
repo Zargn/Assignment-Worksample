@@ -11,4 +11,10 @@
       <ProjectReference Include="..\ConsoleUtils\ConsoleUtils.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Scooters.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

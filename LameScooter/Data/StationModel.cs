@@ -4,18 +4,23 @@ namespace LameScooter.Data;
 
 public record StationModel : IStationModel
 {
-    public string id { get; }
-    public string name { get; }
-    public int x { get; }
-    public int y { get; }
-    public int bikesAvailable { get; }
-    public int spacesAvailable { get; }
-    public int capacity { get; }
-    public bool allowDropoff { get; }
-    public bool allowOverloading { get; }
-    public bool isFloatingBike { get; }
-    public bool isCarStation { get; }
-    public string state { get; }
-    public string[] networks { get; }
-    public bool realTimeData { get; }
+    public string id { get; init; }
+    public string name { get; init; }
+    public float x { get; init; }
+    public float y { get; init; }
+    public int bikesAvailable { get; init; }
+    public int spacesAvailable { get; init; }
+    public int capacity { get; init; }
+    public bool allowDropoff { get; init; }
+    public bool allowOverloading { get; init; }
+    public bool isFloatingBike { get; init; }
+    public bool isCarStation { get; init; }
+    public string state { get; init; }
+    public string[] networks { get; init; }
+    public bool realTimeData { get; init; }
+}
+
+public record StationList
+{
+    public StationModel[] stations { get; init; }
 }

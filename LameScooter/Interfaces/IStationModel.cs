@@ -4,8 +4,8 @@ public interface IStationModel
 {
     public string id { get; }
     public string name { get; }
-    public int x { get; }
-    public int y { get; }
+    public float x { get; }
+    public float y { get; }
     public int bikesAvailable { get; }
     public int spacesAvailable { get; }
     public int capacity { get; }

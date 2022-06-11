@@ -9,6 +9,7 @@ public class LocalLameScooterRental : ILameScooterRental
         this.fileReader = fileReader;
 
         // I am not sure if this will actually run async, or if it will run to end and then exit the constructor.
+        // loadStationsTask = LoadStations();
         loadStationsTask = LoadStations();
     }
 
@@ -25,7 +26,8 @@ public class LocalLameScooterRental : ILameScooterRental
     private async Task LoadStations()
     {
         var json = await fileReader.ReadFileAsync("Scooters.json");
-        foreach (var stationModel in jsonSerializer.DeSerialize<StationModel[]>(json))
+        var stationModels = jsonSerializer.DeSerialize<StationList>(json);
+        foreach (var stationModel in stationModels.stations)
         {
             stationNameLookup.Add(stationModel.name, stationModel);
         }
@@ -33,10 +35,16 @@ public class LocalLameScooterRental : ILameScooterRental
     
     
     
-
-    public Task<int> GetAvailableScootersAtStation(string stationName)
+    public async Task<int> GetAvailableScootersAtStation(string stationName)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return stationNameLookup[stationName].bikesAvailable;
+        }
+        catch (KeyNotFoundException)
+        {
+            return -1;
+        }
     }
 
     public Task<bool> TryGetStation(string stationName, out IStationModel stationModel)
