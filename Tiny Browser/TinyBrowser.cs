@@ -44,9 +44,9 @@ public class TinyBrowser
         while (true)
         {
             currentLoadedWebpage.DrawPage();
-            switch (Utility.AskUserForStringInput("Enter selection. [U] = link selection, [Q] = quit, [B] = back, [F] = forward"))
+            switch (Utility.AskUserForStringInput("Enter selection. [L] = link selection, [Q] = quit, [B] = back, [F] = forward"))
             {
-                case "U":
+                case "L" or "l":
                     if (TryGetWebpage(currentLoadedWebpage, http11Request, out LoadedWebpage newPage))
                     {
                         webPageHistory.Push(currentLoadedWebpage);
@@ -57,19 +57,20 @@ public class TinyBrowser
                         Console.WriteLine("Could not find webpage...");
                     }
                     break;
-                case "Q":
+                case "Q" or "q":
                     return;
-                case "B":
+                case "B" or "b":
                     GoBack();
                     break;
-                case "F":
+                case "F" or "f":
                     GoForward();
                     break;
-                    
                 default:
                     Console.WriteLine("Invalid input");
                     break;
             }
+
+            Thread.Sleep(1000);
         }
     }
 
