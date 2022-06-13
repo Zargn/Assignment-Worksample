@@ -17,11 +17,11 @@ public class TinyBrowser
     private readonly HtmlReader htmlReader;
 
     private readonly Stack<LoadedWebpage> webPageHistory = new();
-    private Stack<LoadedWebpage> goBackHistory = new();
+    private readonly Stack<LoadedWebpage> goBackHistory = new();
     private LoadedWebpage currentLoadedWebpage;
 
 
-    private int port;
+    private int port = 80;
     
     public TinyBrowser()
     {
@@ -31,7 +31,7 @@ public class TinyBrowser
     public void Run()
     {
         var hostname = Utility.AskUserForStringInput("Please enter hostname");
-        port = Utility.AskUserForIntegerInput("Please enter port number");
+        // port = Utility.AskUserForIntegerInput("Please enter port number");
 
         var http11Request = new Http11Request("GET", "/", hostname);
         
