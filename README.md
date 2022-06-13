@@ -1,38 +1,24 @@
-# Networking 103 REST Server
-## 1. Stuff
-## Goal of this Assignment
-The goal of this assignment is to introduce you to developing REST-APIs using `C#`, `HTTP`, `JSON` and `ASP .NET Core`\
-In total, our steps will include:
-- An Acme.com Weblink Browser
-- Exploring an existing REST-API through HTTP
-- Building a Bikesharing Console Application
-- Building a REST Game App
+## Overview
 
-## Grading
-|Grade  |  Requirement |
-|-------|:-------------|
-|Summa Cum laude (A*)| > 90%|
-| Magna Cum Laude (A)| 80-89%|
-|Cum Laude (B)| 70-79%|
-|Passed (C)| 60-69%|
-|Barely Passed (D)| 50-59% |
-|Insufficient (E)| 10-49% |
-|Failed (F)| < 10% |
--------------------------------
-Each of these grades expects the previous requirements as well as its own requirements to be fulfilled.
+This is a small sample taken from one of my recent assignments. 
 
+## Program explainations:
+### Tiny Browser:
+A small console based web browser using html 1.1. It is very limited in what webpages it can display, one working one is acme.com.
 
-## Prerequisites / Requirements
-- Make sure, that .NET Core 6 SDK is installed from https://www.microsoft.com/net/download
-- I recommend to use Jetbrains Rider as an IDE.
-- Install Unity Hub & Unity.
+### Github Explorer:
+A small application that lets the user connect to github with their REST api, allowing them to open repositories and create/edit issues.
 
-## Remarks
-- In the first Exercise, we are not using any HTTP-Classes, but manually using the HTTP-Protocol with a TCP-Client for educational purposes.
+### Lame Scooter:
+A kind of useless in its current shape, but modular, scooter rental service. With this local implementation you can only access and read information about stations stored in a local json file.
 
-## List of Assignments:
-- 1. [Tiny Browser](assignments/assignment1.md)
-- 2. [Github Explorer](assignments/assignment2.md)
-- 3. [Lame Scooter](assignments/assignment3.md)
-- 4. [MMO-RPG Pre-Production](assignments/assignment4-preproduction.md)
-- 5. [MMO-RPG](assignments/assignment4.md)
+### TinyHtmlReader:
+Small html reader class used by the Tiny Browser.
+
+### ExtraExtensionMethods:
+Holds a simple extension to make deserializing objects from HttpResponseMessages easier.
+
+### ConsoleUtils
+Has a few console related functions. 
+- Getting user input in string or int format.
+- Buffering console write output, allowing better write performance by writing more less times.
