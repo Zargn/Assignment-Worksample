@@ -17,7 +17,7 @@ public class GithubExplorer
             return;
         }
         
-        var targetUser = Utility.AskUserForStringInput(@"Welcome to this very limited github browser!
+        var targetUser = Utility.AskUserForStringInput(@"Welcome to this testing app using my limited github browser system!
 Please enter a user you like to inspect!");
 
         IHttpClient httpClient = new HttpConnection();
@@ -27,8 +27,6 @@ Please enter a user you like to inspect!");
         user.Draw();
         TurboOutput.PrintBuffer();
 
-        var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
-
         var repositories = user.Repositories;
         foreach (var VARIABLE in repositories)
         {
@@ -36,6 +34,7 @@ Please enter a user you like to inspect!");
         }
         TurboOutput.PrintBuffer();
         
+        var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
         
         if (user.TryGetRepository(targetRepository, out IRepository repository))
         {
@@ -50,30 +49,51 @@ Please enter a user you like to inspect!");
             
             TurboOutput.PrintBuffer();
 
-            // var title = Utility.AskUserForStringInput("Please enter issue title: ");
-            // var body = Utility.AskUserForStringInput("Please enter issue body: ");
-            // var createdIssue = repository.CreateIssue(title, body, user.UserProfile.login);
-            // createdIssue.Draw();
-            // TurboOutput.PrintBuffer();
+            var userIssueOptions =
+                Utility.AskUserForIntegerInput("Do you want to [1] create a issue or [2] edit a issue, in this repo?");
+            if (userIssueOptions == 1)
+            {
+                var newIssue = CreateIssue(repository, user);
+                newIssue.Draw();
+            }
+            else if (userIssueOptions == 2)
+            {
+                var editedIssue = EditIssue(repository);
+                editedIssue.Draw();
+            }
+            TurboOutput.PrintBuffer();
+        }
+        else
+        {
+            Console.WriteLine("not found");
+        }
+    }
 
+    private IIssue CreateIssue(IRepository currentRepo, IUser currentUser)
+    {
+        var title = Utility.AskUserForStringInput("Please enter issue title: ");
+        var body = Utility.AskUserForStringInput("Please enter issue body: ");
+        var createdIssue = currentRepo.CreateIssue(title, body, currentUser.UserProfile.login);
+        return createdIssue;
+    }
+
+    private IIssue EditIssue(IRepository currentRepo)
+    {
+        while (true)
+        {
             var id = Utility.AskUserForIntegerInput("Please enter id of issue to edit: ");
-            if (repository.TryGetIssue(id, out IIssue issue))
+            if (currentRepo.TryGetIssue(id, out IIssue issue))
             {
                 var newTitle = Utility.AskUserForStringInput("Please enter issue title: ");
                 var newBody = Utility.AskUserForStringInput("Please enter issue body: ");
 
                 var updatedIssue = issue.UpdateIssue(newTitle, newBody);
-                updatedIssue.Draw();
-                TurboOutput.PrintBuffer();
+                return updatedIssue;
             }
             else
             {
-                Console.WriteLine("not found");
+                Console.WriteLine("issue not found, try again!");
             }
-        }
-        else
-        {
-            Console.WriteLine("not found");
         }
     }
 }
