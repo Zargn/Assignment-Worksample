@@ -11,17 +11,23 @@ public class GithubExplorer
 {
     public void Run()
     {
-//         var targetUser = Utility.AskUserForStringInput(@"Welcome to this very limited github browser!
-// Please enter a user you like to inspect!");
+        if (Auth.token == null)
+        {
+            Console.WriteLine("Please add a github personal access token to Auth.cs to use this application.");
+            return;
+        }
+        
+        var targetUser = Utility.AskUserForStringInput(@"Welcome to this very limited github browser!
+Please enter a user you like to inspect!");
 
         IHttpClient httpClient = new HttpConnection();
         IGithubAPI githubApi = new GithubAPI(httpClient);
         
-        var user = githubApi.GetUser("Zargn");
+        var user = githubApi.GetUser(targetUser);
         user.Draw();
         TurboOutput.PrintBuffer();
 
-        // var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
+        var targetRepository = Utility.AskUserForStringInput("Write repository name to open:");
 
         var repositories = user.Repositories;
         foreach (var VARIABLE in repositories)
@@ -29,9 +35,9 @@ public class GithubExplorer
             VARIABLE.Draw();
         }
         TurboOutput.PrintBuffer();
-
-        Console.WriteLine("-------------------");
-        if (user.TryGetRepository("TinyEngine", out IRepository repository))
+        
+        
+        if (user.TryGetRepository(targetRepository, out IRepository repository))
         {
             repository.Draw();
 
